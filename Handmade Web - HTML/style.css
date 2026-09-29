@@ -1,0 +1,50 @@
+body {
+    font-family: Helvetica, sans-serif;
+    font-size: 15px;
+    color: black;
+    background-color: rgb(246, 247, 215);
+
+    padding: 40px;
+}
+
+h1 {
+    font-size: 50px;
+    margin-bottom: 50px;
+
+    max-width: 700px;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+}
+
+p {
+    line-height: 1.5;
+    max-width: 700px;
+    margin-bottom: 30px;
+
+    max-width: 700px;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+}
+
+em {
+
+    font-style: italic;
+    color: rgb(255, 0, 174);
+    
+}
+
+b {
+
+
+    font-weight: bold;
+    color: rgb(255, 111, 0);
+}
+
+a {
+    color: rgb(0, 194, 172);
+}
+
