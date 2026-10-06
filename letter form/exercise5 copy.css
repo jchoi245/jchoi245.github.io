@@ -1,0 +1,82 @@
+body {
+    margin: 0;
+    background-color: black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+}
+
+.letter {
+    width: 400px;
+    height: 400px;
+    position: relative;
+}
+
+
+/* BIG CIRCLE */
+
+.circle {
+    width: 220px;
+    height: 220px;
+
+    background-color: rgba(220, 220, 220, 0.8);
+    border-radius: 50%;
+
+    position: absolute;
+    left: 60px;
+    top: 90px;
+
+    transition-property: all;
+    transition-duration: 0.8s;
+    transition-timing-function: ease-in-out;
+}
+
+
+/* DOT GROUP */
+
+.dots {
+    position: absolute;
+    left: 250px;
+    top: 70px;
+
+    transition-property: all;
+    transition-duration: 0.8s;
+    transition-timing-function: ease-in-out;
+}
+
+
+/* DOTS */
+
+.dot {
+    width: 65px;
+    height: 65px;
+
+    background-color: rgba(220, 220, 220, 0.6);
+    border-radius: 50%;
+
+    margin-bottom: -25px;
+
+    transition-property: all;
+    transition-duration: 0.8s;
+    transition-timing-function: ease-in-out;
+}
+
+
+/* HOVER */
+
+.letter:hover .circle {
+    left: 20px;
+    background-color: rgba(255, 80, 140, 0.8);
+}
+
+.letter:hover .dots {
+    top: 20px;
+}
+
+.letter:hover .dot {
+    margin-bottom: 8px;
+    background-color: rgba(80, 190, 255, 0.7);
+}
