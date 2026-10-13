@@ -5,7 +5,7 @@ const square = document.querySelector('#square');
 let currentColor = 'white';
 
 circle.addEventListener('click', function () {
-  currentColor = currentColor === 'red' ? 'white' : 'red';
+  currentColor = currentColor === 'green' ? 'white' : 'green';
   document.body.style.backgroundColor = currentColor;
 });
 
@@ -15,6 +15,6 @@ triangle.addEventListener('click', function () {
 });
 
 square.addEventListener('click', function () {
-  currentColor = currentColor === 'green' ? 'white' : 'green';
+  currentColor = currentColor === 'red' ? 'white' : 'red';
   document.body.style.backgroundColor = currentColor;
 });
