@@ -1,0 +1,118 @@
+:root {
+  --pink: #f268a0;
+  --ink: #0a0a0a;
+  --ease: cubic-bezier(0, 0, .58, 1);   /* Figma "ease out" */
+  --spring: cubic-bezier(.34, 1.56, .64, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; background: var(--pink); }
+body { position: fixed; inset: 0; overscroll-behavior: none; color: var(--ink); -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; display: block; }
+img { display: block; }
+
+/* ---------- 1512 × 982 design stage, scaled to fit ---------- */
+#stage { position: absolute; left: 50%; top: 50%; width: 1512px; height: 982px; transform-origin: 0 0; }
+
+/* every screen is a full frame; only the active one is visible (Figma: dissolve, 300ms, ease out) */
+.screen {
+  position: absolute; inset: 0; overflow: hidden; background: var(--pink);
+  opacity: 0; visibility: hidden; transition: opacity .3s var(--ease), visibility 0s linear .3s;
+}
+.screen.active { opacity: 1; visibility: visible; transition: opacity .3s var(--ease); }
+
+.abs { position: absolute; }
+/* a rotated layer: the box is its bounding box in the design, the child is rotated about the centre */
+.rot { position: absolute; display: flex; align-items: center; justify-content: center; }
+.rot > * { flex: none; position: relative; }
+.multiply { mix-blend-mode: multiply; }
+.fill { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+/* the cut-out photos are transparent, so their shadows follow the picture, not the box */
+.shadow { filter: drop-shadow(4px 4px 2px rgba(0,0,0,.25)); }
+.shadow-strong { filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5)); }
+
+/* ---------- type ---------- */
+.title { font: 700 76px/.86 'Arimo', sans-serif; letter-spacing: -4.56px; white-space: nowrap; }
+.hero-title { font: 700 200px/.84 'Arimo', sans-serif; letter-spacing: -12px; white-space: nowrap; }
+.thin { font: 100 64px/normal 'Archivo', sans-serif; letter-spacing: -1.92px; color: #fff; white-space: nowrap; }
+.light { font: 300 40px/normal 'Archivo', sans-serif; letter-spacing: -1.2px; color: #fff; white-space: nowrap; }
+.mono { font: 400 22px/normal 'Space Mono', monospace; letter-spacing: .88px; text-transform: uppercase; white-space: nowrap; }
+.callout .big { font: 400 60px/normal 'Archivo Black', sans-serif; letter-spacing: -1.8px; color: #fff; margin-bottom: 4px; white-space: nowrap; }
+.link { font: 700 22px/normal 'Space Mono', monospace; letter-spacing: .88px; text-transform: uppercase; white-space: nowrap;
+        text-decoration: underline; text-underline-position: from-font; transition: translate .2s var(--ease); }
+.link:not(.back):hover, .link:not(.back):focus-visible { translate: 4px 0; }
+.back:hover p, .back:focus-visible p { translate: -4px 0; }
+.back p { transition: translate .2s var(--ease); }
+
+/* ---------- the open bag: one item at a time is fully visible and clickable ---------- */
+.item { opacity: var(--dim, .25); pointer-events: none; transition: scale .25s var(--spring), translate .3s var(--spring), opacity .3s; }
+/* the layout boxes around items overlap, so only the item itself may catch the pointer */
+#bag > .rot, #bag > .abs { pointer-events: none; }
+.item.target { opacity: 1; pointer-events: auto; cursor: pointer; }
+
+/* placeholders that still stand in for real content */
+.box-white { background: #fff; }
+.receipt { background: #fff; border: 1.5px solid var(--ink); }
+
+.tooltip { background: #fff; border: 1px solid #000; padding: 12px 16px; font-size: 16px; letter-spacing: .64px; line-height: normal; }
+#hero-bag { cursor: pointer; }
+#hero-bag:hover ~ .click-bag p, .click-bag:hover p { scale: 1.05; }
+.click-bag p { transition: scale .25s var(--ease); }
+:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+
+/* ---------- motion ---------- */
+/* each screen's pieces rise in one after another (--i is set by the script) */
+.screen.active > * { animation: rise .6s var(--spring) backwards; animation-delay: calc(var(--i, 0) * 70ms); }
+@keyframes rise { from { opacity: 0; translate: 0 28px; } }
+/* "!wrong item!" buzzes once it lands */
+.screen.active .callout > div { animation: buzz .45s ease-in-out .55s; }
+@keyframes buzz { 20% { translate: -7px 0; } 40% { translate: 6px 0; } 60% { translate: -4px 0; } 80% { translate: 2px 0; } }
+
+/* hero: the bag rumbles while hovered, shakes hard when clicked; "click bag" bobs to invite a click */
+#hero.bag-hover #hero-bag img { animation: rumble .16s linear infinite; }
+#hero-bag.shake img { animation: shake .38s ease-in-out; }
+@keyframes rumble { 25% { transform: translate(1.5px, -1px) rotate(.3deg); } 50% { transform: translate(-1px, 1.5px) rotate(-.3deg); } 75% { transform: translate(-1.5px, -.5px) rotate(.2deg); } }
+@keyframes shake { 15% { transform: translate(-10px, 3px) rotate(-1.5deg); } 35% { transform: translate(9px, -3px) rotate(1.5deg); } 55% { transform: translate(-6px, 2px) rotate(-1deg); } 75% { transform: translate(4px, -1px) rotate(.5deg); } }
+.click-bag p { animation: bob 2.2s ease-in-out infinite; }
+#hero.bag-hover .click-bag p, .click-bag:hover p { animation-duration: .7s; }
+@keyframes bob { 50% { translate: 0 -10px; } }
+
+/* the open bag: everything jitters while the pointer rummages; the next item gives a nudge now and then */
+.bag-img { transition: translate .2s; }
+#bag.rummaging .bag-img { animation: jitter .14s linear infinite; }
+#bag.rummaging .item { animation: jitter .12s linear infinite; }
+#bag.rummaging .item:nth-of-type(odd), #bag.rummaging .rot:nth-child(odd) .item { animation-duration: .1s; animation-direction: reverse; }
+@keyframes jitter {
+  25% { translate: calc(var(--amp, 1) * 1px) calc(var(--amp, 1) * -1px); }
+  50% { translate: calc(var(--amp, 1) * -1.2px) calc(var(--amp, 1) * .8px); }
+  75% { translate: calc(var(--amp, 1) * .6px) calc(var(--amp, 1) * 1.2px); }
+}
+.item.target { animation: nudge 2.6s ease-in-out 1s infinite; }
+@keyframes nudge { 0%, 78%, 100% { rotate: 0deg; } 82% { rotate: -5deg; } 86% { rotate: 5deg; } 90% { rotate: -3deg; } 94% { rotate: 1.5deg; } }
+#bag .item.target:hover, #bag .item.target:focus-visible { scale: 1.1; animation: wobble .45s ease-in-out infinite; }
+@keyframes wobble { 25% { rotate: -4deg; } 75% { rotate: 4deg; } }
+#bag .item.picked { animation: none; scale: 1.3; translate: 0 -40px; opacity: 1; }
+
+/* item pages: things lift when hovered */
+.box-white, .receipt, #planner-big img { transition: translate .3s var(--spring), rotate .3s var(--spring), box-shadow .3s; }
+.box-white:hover, .receipt:hover { translate: 0 -10px; rotate: -1.5deg; box-shadow: 6px 12px 0 rgba(0,0,0,.18); }
+#planner-big { cursor: pointer; }
+#planner-big:hover img { rotate: -3deg; translate: 0 -6px; }
+#planner-big.flip img { animation: flip .55s ease-in-out; }
+@keyframes flip { 45% { transform: perspective(900px) rotateY(-38deg) skewY(2deg); } }
+.tooltip { animation: bob 2.4s ease-in-out infinite; }
+.pointer-arrow { animation: point 1.2s ease-in-out infinite; }
+@keyframes point { 50% { translate: 6px -7px; } }
+.link:active, .item.target:active { scale: .95; }
+
+/* found it */
+.screen.active .found-head p { animation: pop .8s var(--spring) .25s backwards; }
+@keyframes pop { from { scale: .4; opacity: 0; } }
+.screen.active .found-pen { animation: float 3s ease-in-out 1s infinite; }
+@keyframes float { 50% { translate: 0 -12px; rotate: 1.5deg; } }
+
+#sound { right: 40px; top: 40px; font-size: 14px; letter-spacing: .56px; z-index: 2; opacity: .75; transition: opacity .2s; }
+#sound:hover { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
