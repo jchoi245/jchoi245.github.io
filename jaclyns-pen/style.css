@@ -31,8 +31,8 @@ img { display: block; }
 .shadow-strong { filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5)); }
 
 /* ---------- type ---------- */
-.title { font: 700 76px/.86 'Arimo', sans-serif; letter-spacing: -4.56px; white-space: nowrap; }
-.hero-title { font: 700 200px/.84 'Arimo', sans-serif; letter-spacing: -12px; white-space: nowrap; }
+.title { font: 700 76px/.96 'Arimo', sans-serif; letter-spacing: -4.56px; white-space: nowrap; }
+.hero-title { font: 700 200px/.96 'Arimo', sans-serif; letter-spacing: -12px; white-space: nowrap; }
 .thin { font: 100 64px/normal 'Archivo', sans-serif; letter-spacing: -1.92px; color: #fff; white-space: nowrap; }
 .light { font: 300 40px/normal 'Archivo', sans-serif; letter-spacing: -1.2px; color: #fff; white-space: nowrap; }
 .mono { font: 400 22px/normal 'Space Mono', monospace; letter-spacing: .88px; text-transform: uppercase; white-space: nowrap; }
