@@ -11,14 +11,12 @@ const plannerBig = document.querySelector('#planner-big');
 const todoPage = document.querySelector('#todo-page');
 const leftPage = document.querySelector('#left-page');
 const plannerHint = document.querySelector('#planner-hint');
-const soundButton = document.querySelector('#sound-button');
 const progressBar = document.querySelector('#progress-bar');
 
 const screens = document.querySelectorAll('.screen');
 const itemButtons = document.querySelectorAll('.item');
 const backButtons = document.querySelectorAll('.back-to-bag');
 const progressSegments = document.querySelectorAll('#progress-bar span');
-const hoverThings = document.querySelectorAll('.pouch-thing, .strip, .receipt, .link, .cover, .play, #planner-big, #sound-button');
 
 
 // ===== THE GAME =====
@@ -84,10 +82,6 @@ function grabItem() {
     itemButton.classList.remove('picked');
     isChangingScreen = false;
     showScreen('page-' + itemName);
-
-    if (itemName === 'pen') {
-      playSound(chimeSound);
-    }
   }, 320);
 }
 
@@ -135,7 +129,6 @@ function openPlanner() {
   plannerHint.classList.add('dark');
   plannerHint.textContent = 'click to close';
   plannerOpen = true;
-  playSound(flipSound);
 }
 
 function closePlanner() {
@@ -157,7 +150,6 @@ plannerBig.addEventListener('click', function () {
 // Click the left page to close it again.
 leftPage.addEventListener('click', function () {
   closePlanner();
-  playSound(flipSound);
 });
 
 
@@ -207,41 +199,14 @@ rummageArea.addEventListener('mousemove', function () {
 });
 
 
-// ===== SOUND EFFECTS =====
-const hoverSound = new Audio('assets/sounds/hover.wav');
-const flipSound = new Audio('assets/sounds/flip.wav');
-const chimeSound = new Audio('assets/sounds/chime.wav');
+// ===== BUTTON SOUND =====
+const buttonSound = new Audio('assets/sounds/button.mp3');
+const allButtons = document.querySelectorAll('button');
 
-let soundOn = true;
-let hasClicked = false; // browsers block sound until the first click
-
-document.addEventListener('click', function () {
-  hasClicked = true;
-});
-
-function playSound(sound) {
-  if (soundOn === true && hasClicked === true) {
-    sound.currentTime = 0;
-    sound.play();
-  }
-}
-
-function toggleSound() {
-  if (soundOn === true) {
-    soundOn = false;
-    soundButton.textContent = 'sound off';
-    stopSong();
-  } else {
-    soundOn = true;
-    soundButton.textContent = 'sound on';
-  }
-}
-
-soundButton.addEventListener('click', toggleSound);
-
-for (let i = 0; i < hoverThings.length; i++) {
-  hoverThings[i].addEventListener('mouseenter', function () {
-    playSound(hoverSound);
+for (let i = 0; i < allButtons.length; i++) {
+  allButtons[i].addEventListener('click', function () {
+    buttonSound.currentTime = 0;
+    buttonSound.play();
   });
 }
 
@@ -291,10 +256,6 @@ function clickSong(number) {
   }
 
   stopSong();
-
-  if (soundOn === false) {
-    toggleSound();
-  }
 
   playingSong = number;
   covers[number].classList.add('playing');
