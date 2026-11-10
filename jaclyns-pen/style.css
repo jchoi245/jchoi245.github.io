@@ -113,6 +113,12 @@ img { display: block; }
 #sound { right: 40px; top: 40px; font-size: 14px; letter-spacing: .56px; z-index: 2; opacity: .75; transition: opacity .2s; }
 #sound:hover { opacity: 1; }
 
+/* progress: one segment per item in the bag, pinned to the bottom of the window */
+#progress { position: fixed; left: 0; right: 0; bottom: env(safe-area-inset-bottom, 0); display: flex; gap: 4px; height: 8px; z-index: 3; pointer-events: none; }
+#progress span { flex: 1; background: rgba(10,10,10,.18); }
+#progress span::after { content: ''; display: block; height: 100%; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease); }
+#progress span.done::after { transform: scaleX(1); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }

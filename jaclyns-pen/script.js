@@ -19,9 +19,23 @@ const heroBag = document.getElementById('hero-bag');
 const soundButton = document.getElementById('sound');
 const plannerBig = document.getElementById('planner-big');
 const stage = document.getElementById('stage');
+const progressBar = document.getElementById('progress');
+
+const bagSteps = Object.keys(BAG_STATES);
+const itemPages = bagSteps.map(step => BAG_STATES[step].page);
 
 let currentScreen = INITIAL_SCREEN;
 let isBusy = false;
+
+progressBar.setAttribute('aria-valuemax', bagSteps.length);
+bagSteps.forEach(() => progressBar.append(document.createElement('span')));
+
+function updateProgress(step) {
+  // An item counts once its page has been opened; the hero is in neither list, so it counts as 0.
+  const itemsDone = BAG_STATES[step] ? bagSteps.indexOf(step) : itemPages.indexOf(step) + 1;
+  [...progressBar.children].forEach((segment, index) => segment.classList.toggle('done', index < itemsDone));
+  progressBar.setAttribute('aria-valuenow', itemsDone);
+}
 
 function setActiveScreen(step) {
   const bagState = BAG_STATES[step];
@@ -36,6 +50,7 @@ function setActiveScreen(step) {
   }
 
   currentScreen = step;
+  updateProgress(step);
   document.querySelectorAll('.screen').forEach(screen => {
     const isActive = screen.id === targetScreenId;
     screen.classList.toggle('active', isActive);
