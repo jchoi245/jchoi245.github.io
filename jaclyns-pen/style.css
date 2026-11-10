@@ -470,9 +470,19 @@ a {
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
+/* Clicking the words ticks the box too */
+#todo-page label {
+  font-size: 28px;
+  line-height: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
 #todo-page input {
   width: 20px;
   height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
   accent-color: #0a0a0a;
   cursor: pointer;
 }
@@ -491,7 +501,7 @@ a {
   letter-spacing: -1.2px;
   color: white;
   white-space: nowrap;
-  pointer-events: none;
+  z-index: 1;
 }
 
 #back-planner {

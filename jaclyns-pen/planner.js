@@ -36,3 +36,20 @@ plannerBig.addEventListener('click', function () {
 leftPage.addEventListener('click', function () {
   closePlanner();
 });
+
+// Click the right page to close it too, except on a to-do item (that ticks the box).
+todoPage.addEventListener('click', function (event) {
+  if (event.target.tagName === 'INPUT' || event.target.tagName === 'LABEL') {
+    return;
+  }
+  closePlanner();
+});
+
+// The "click to open / click to close" words work as a button too.
+plannerHint.addEventListener('click', function () {
+  if (plannerOpen === false) {
+    openPlanner();
+  } else {
+    closePlanner();
+  }
+});
