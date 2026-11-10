@@ -67,8 +67,28 @@ img {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #f268a0;
 }
+
+
+/* ==========================================================
+   PAGE COLORS
+   Every page has its own background color.
+   The class name is on each page's <body> tag.
+   ========================================================== */
+.start        { background: #f268a0; } /* pink */
+.bag-airpods  { background: #ff7f50; } /* coral */
+.airpods      { background: #4f9dde; } /* blue */
+.bag-planner  { background: #9b7bea; } /* violet */
+.planner      { background: #e8a317; } /* mustard */
+.bag-pouch    { background: #3fb68b; } /* green */
+.pouch        { background: #c780e8; } /* orchid */
+.bag-wallet   { background: #f08a24; } /* orange */
+.wallet       { background: #6f9f58; } /* moss */
+.bag-receipts { background: #3eb6c4; } /* teal */
+.receipts     { background: #d65a5a; } /* red */
+.bag-pen      { background: #7a8cf0; } /* periwinkle */
+.pen          { background: #f2b33d; } /* gold */
+.credits      { background: #8fbf3a; } /* lime */
 
 
 /* ==========================================================
