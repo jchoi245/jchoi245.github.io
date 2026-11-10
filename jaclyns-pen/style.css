@@ -718,6 +718,63 @@ a {
 
 
 /* ==========================================================
+   CREDITS
+   ========================================================== */
+/* The "credits" link in the top right corner of the start and found pages */
+#credits-link {
+  right: 40px;
+  top: 40px;
+  z-index: 2;
+}
+
+#credits-link:hover {
+  translate: 0 -3px;
+}
+
+#credits-heading {
+  position: absolute;
+  left: 520px;
+  top: 90px;
+  transform: rotate(-4deg);
+  font: 400 120px/1 'Covered By Your Grace', cursive;
+  color: white;
+}
+
+#credits-list {
+  position: absolute;
+  left: 530px;
+  top: 250px;
+  width: 620px;
+  font: 400 26px/1.35 'VT323', monospace;
+  text-transform: uppercase;
+}
+
+#credits-list h2 {
+  margin: 26px 0 4px;
+  font: 400 44px/1 'Covered By Your Grace', cursive;
+  text-transform: none;
+  color: white;
+}
+
+#credits-list h2:first-child {
+  margin-top: 0;
+}
+
+.credit-link {
+  text-decoration: underline;
+}
+
+.credit-link:hover {
+  color: white;
+}
+
+#back-to-start {
+  left: 1240px;
+  top: 889px;
+}
+
+
+/* ==========================================================
    PROGRESS BAR
    ========================================================== */
 #progress-bar {
