@@ -120,10 +120,15 @@ img {
 }
 
 .callout-big {
-  font: 400 76px/1.05 'Covered By Your Grace', cursive;
+  font: 400 58px/1.05 'Covered By Your Grace', cursive;
   color: white;
   margin-bottom: 6px;
   white-space: nowrap;
+}
+
+/* "item 1 grabbed: airpods" under the note */
+.callout .small-text {
+  font-size: 36px;
 }
 
 /* Links have no underline or blue color unless we add them */
@@ -145,6 +150,12 @@ a {
 
 .link:hover {
   translate: 4px 0;
+}
+
+/* "go back to bag" is bigger than the other links */
+.back-to-bag {
+  font-size: 42px;
+  letter-spacing: 0.8px;
 }
 
 .back-to-bag:hover {
@@ -252,10 +263,17 @@ a {
   opacity: 0.57;
 }
 
+/* The items overlap. Only the one you can click should catch the mouse,
+   so the others let clicks pass straight through them. */
+.item {
+  pointer-events: none;
+}
+
 /* The one item you can click right now */
 .item.target {
   opacity: 1;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 #receipts-item {
@@ -406,7 +424,7 @@ a {
 #name-sza { left: 1035px; }
 
 #back-airpods {
-  left: 1257px;
+  left: 1190px;
   top: 215px;
   transform: rotate(-13.03deg);
 }
@@ -626,7 +644,7 @@ a {
 }
 
 #back-wallet {
-  left: 197px;
+  left: 135px;
   top: 616px;
   transform: rotate(37.71deg);
 }
