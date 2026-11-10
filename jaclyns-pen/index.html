@@ -1,178 +1,203 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
-<title>Journey to Jaclyn’s Pen</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Archivo:wght@100;300&family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find Jaclyn’s Pen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Archivo:wght@100;300&family=Covered+By+Your+Grace&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <div id="stage">
-  <button class="abs mono" id="sound" aria-pressed="true">sound on</button>
 
-  <!-- ===== hero ===== -->
-  <section class="screen active" id="hero" aria-label="Journey to Jaclyn’s pen">
-    <div class="rot" style="left:19.05px; top:110px; width:1040.442px; height:456.218px">
-      <h1 class="hero-title" style="transform:rotate(7deg)">journey to<br>jaclyn’s pen</h1>
-    </div>
-    <button class="abs multiply" id="hero-bag" data-go="bag-airpods" aria-label="Open the bag"
-            style="left:14px; top:0; width:1556px; height:1011px; overflow:hidden">
-      <img src="assets/hero-bag.png" alt="" style="position:absolute; width:100%; height:103.25%; left:-2.53%; top:9.97%; max-width:none">
-    </button>
-    <button class="rot click-bag" data-go="bag-airpods" style="left:988.67px; top:738.89px; width:226.814px; height:141.59px">
-      <p class="thin" style="transform:rotate(-20.62deg)">click bag</p>
-    </button>
-    <div class="rot" style="left:54.98px; top:860px; width:385.094px; height:98.402px">
-      <p class="mono" style="font-size:24px; letter-spacing:1.92px; transform:rotate(4deg)">rummage through the bag<br>and find the pen</p>
-    </div>
+  <button id="sound-button" class="small-text">sound on</button>
+
+  <!-- ========== START SCREEN ========== -->
+  <section id="hero" class="screen active">
+    <h1 id="hero-title" class="rise">find<br>jaclyn’s pen</h1>
+    <img id="hero-bag" src="assets/hero-bag.png" alt="">
+    <button id="hero-bag-button" aria-label="Open the bag"></button>
+    <button id="click-bag-text">click bag</button>
+    <p id="hero-instructions" class="small-text rise">rummage through the bag<br>and find the pen</p>
   </section>
 
-  <!-- ===== the open bag (pages 2, 4, 8, 10, 12, 14 — only the target item changes) ===== -->
-  <section class="screen" id="bag" aria-label="Inside the bag">
-    <div class="rot" style="left:28.67px; top:60px; width:392.873px; height:162.886px">
-      <p class="title" style="transform:rotate(5deg)">journey to<br>jaclyn’s pen</p>
-    </div>
-    <div class="abs multiply" style="left:282px; top:129px; width:903px; height:825px">
-      <img class="fill bag-img" src="assets/open-bag.png" alt="" style="opacity:.63">
-    </div>
-    <div class="abs multiply" style="left:609px; top:610px; width:107px; height:134px">
-      <button class="item shadow" data-item="receipts" aria-label="Crumpled receipts" style="--dim:.57; width:107px; height:134px">
-        <img class="fill" src="assets/receipts.png" alt="">
-      </button>
-    </div>
-    <div class="rot multiply" style="left:651px; top:466px; width:145.704px; height:211.4px">
-      <button class="item shadow" data-item="pen" aria-label="Pen" style="width:82px; height:195px; transform:rotate(20.73deg)">
-        <img class="fill" src="assets/pen.png" alt="" style="opacity:.91">
-      </button>
-    </div>
-    <div class="rot multiply" style="left:483px; top:317px; width:339.493px; height:339.493px">
-      <button class="item shadow-strong" data-item="planner" aria-label="Planner" style="width:286.103px; height:286.103px; transform:rotate(-12.04deg)">
-        <img class="fill" src="assets/planner.png" alt="">
-      </button>
-    </div>
-    <div class="rot multiply" style="left:703px; top:307px; width:222.587px; height:247.707px">
-      <button class="item shadow" data-item="airpods" aria-label="Airpods" style="width:178px; height:212px; transform:rotate(13.51deg)">
-        <img class="fill" src="assets/airpods.png" alt="">
-      </button>
-    </div>
-    <div class="rot multiply" style="left:488.22px; top:485.8px; width:264.567px; height:238.398px">
-      <button class="item shadow" data-item="wallet" aria-label="Wallet" style="width:227px; height:192px; transform:rotate(-13.08deg)">
-        <img class="fill" src="assets/wallet.png" alt="">
-      </button>
-    </div>
-    <div class="abs multiply" style="left:663px; top:503px; width:229px; height:223px">
-      <button class="item shadow" data-item="pouch" aria-label="Pouch" style="width:229px; height:223px">
-        <img class="fill" src="assets/pouch.png" alt="" style="opacity:.79">
-      </button>
-    </div>
+  <!-- ========== INSIDE THE BAG ========== -->
+  <section id="bag" class="screen">
+    <p class="title rise">find<br>jaclyn’s pen</p>
+    <img id="open-bag" src="assets/open-bag.png" alt="">
+    <div id="rummage-area"></div>
+
+    <button id="receipts-item" class="item less-faded" aria-label="Crumpled receipts"><img src="assets/receipts.png" alt=""></button>
+    <button id="pen-item" class="item" aria-label="Pen"><img src="assets/pen.png" alt=""></button>
+    <button id="planner-item" class="item" aria-label="Planner"><img src="assets/planner.png" alt=""></button>
+    <button id="airpods-item" class="item" aria-label="Airpods"><img src="assets/airpods.png" alt=""></button>
+    <button id="wallet-item" class="item" aria-label="Wallet"><img src="assets/wallet.png" alt=""></button>
+    <button id="pouch-item" class="item" aria-label="Pouch"><img src="assets/pouch.png" alt=""></button>
   </section>
 
-  <!-- ===== page 3 · airpods ===== -->
-  <section class="screen" id="page-airpods" aria-label="Wrong item: airpods">
-    <div class="rot" style="left:28.67px; top:60px; width:392.873px; height:162.886px">
-      <p class="title" style="transform:rotate(5deg)">journey to<br>jaclyn’s pen</p>
+  <!-- ========== AIRPODS PAGE ========== -->
+  <section id="page-airpods" class="screen">
+    <p class="title rise">find<br>jaclyn’s pen</p>
+    <div class="callout">
+      <p class="callout-big">!wrong item!</p>
+      <p class="small-text">item grabbed: airpods</p>
     </div>
-    <div class="rot callout" style="left:33.16px; top:834px; width:397.881px; height:125.106px">
-      <div style="transform:rotate(4deg)"><p class="big">!wrong item!</p><p class="mono">item grabbed: airpods</p></div>
-    </div>
-    <div class="abs box-white" style="left:119px; top:324px; width:358px; height:339px"></div>
-    <div class="abs box-white" style="left:577px; top:324px; width:358px; height:339px"></div>
-    <div class="abs box-white" style="left:1035px; top:324px; width:358px; height:339px"></div>
-    <div class="rot" style="left:273px; top:687px; width:49px; height:59px"><div style="width:59px; height:49px; transform:rotate(90deg)"><img src="assets/play.svg" width="51.0955" height="36.75" alt="" style="position:absolute; left:6.7%; top:0"></div></div>
-    <div class="rot" style="left:731px; top:687px; width:49px; height:59px"><div style="width:59px; height:49px; transform:rotate(90deg)"><img src="assets/play.svg" width="51.0955" height="36.75" alt="" style="position:absolute; left:6.7%; top:0"></div></div>
-    <div class="rot" style="left:1189px; top:686px; width:49px; height:59px"><div style="width:59px; height:49px; transform:rotate(90deg)"><img src="assets/play.svg" width="51.0955" height="36.75" alt="" style="position:absolute; left:6.7%; top:0"></div></div>
-    <button class="rot link back" data-go="bag-planner" style="left:1246px; top:191px; width:230.542px; height:83.798px"><p style="transform:rotate(-13.03deg)">← go back to bag</p></button>
+
+    <button id="cover-dean" class="cover" aria-label="Play Instagram by DEAN"><img src="assets/cover-dean.png" alt=""></button>
+    <button id="play-dean" class="play rise" aria-label="Play Instagram by DEAN"><img src="assets/play.svg" alt=""><div class="pause"></div></button>
+    <p id="name-dean" class="song-name small-text rise">DEAN — Instagram</p>
+
+    <button id="cover-billie" class="cover" aria-label="Play L’Amour de ma vie by Billie Eilish"><img src="assets/cover-billie.png" alt=""></button>
+    <button id="play-billie" class="play rise" aria-label="Play L’Amour de ma vie by Billie Eilish"><img src="assets/play.svg" alt=""><div class="pause"></div></button>
+    <p id="name-billie" class="song-name small-text rise">Billie Eilish — L’Amour de ma vie</p>
+
+    <button id="cover-sza" class="cover" aria-label="Play Awkward by SZA"><img src="assets/cover-sza.png" alt=""></button>
+    <button id="play-sza" class="play rise" aria-label="Play Awkward by SZA"><img src="assets/play.svg" alt=""><div class="pause"></div></button>
+    <p id="name-sza" class="song-name small-text rise">SZA — Awkward</p>
+
+    <button id="back-airpods" class="link back-to-bag rise">← go back to bag</button>
   </section>
 
-  <!-- ===== page 5 · planner ===== -->
-  <section class="screen" id="page-planner" aria-label="Wrong item: planner">
-    <div class="rot" style="left:28.67px; top:60px; width:392.873px; height:162.886px">
-      <p class="title" style="transform:rotate(5deg)">journey to<br>jaclyn’s pen</p>
+  <!-- ========== PLANNER PAGE ========== -->
+  <section id="page-planner" class="screen">
+    <p class="title rise">find<br>jaclyn’s pen</p>
+    <div class="callout">
+      <p class="callout-big">!wrong item!</p>
+      <p class="small-text">item grabbed: planner</p>
     </div>
-    <div class="rot callout" style="left:33.16px; top:834px; width:397.881px; height:125.106px">
-      <div style="transform:rotate(4deg)"><p class="big">!wrong item!</p><p class="mono">item grabbed: planner</p></div>
+
+    <div id="planner-big"><img src="assets/planner.png" alt="Jaclyn’s planner"></div>
+
+    <!-- The open notebook: a to-do list on the right page, a blank left page -->
+    <div id="todo-page">
+      <h2>to do</h2>
+      <p><input type="checkbox" aria-label="To-do item 1"></p>
+      <p><input type="checkbox" aria-label="To-do item 2"></p>
+      <p><input type="checkbox" aria-label="To-do item 3"></p>
+      <p><input type="checkbox" aria-label="To-do item 4"></p>
+      <p><input type="checkbox" aria-label="To-do item 5"></p>
     </div>
-    <div class="abs multiply shadow-strong" id="planner-big" style="left:516px; top:273px; width:480px; height:480px">
-      <img class="fill" src="assets/planner.png" alt="Jaclyn’s planner">
-    </div>
-    <div class="rot" style="left:516px; top:672px; width:275.477px; height:81.427px">
-      <p class="light" style="transform:rotate(8deg)">click to flip pages</p>
-    </div>
-    <button class="rot link back" data-go="bag-pouch" style="left:991.99px; top:440px; width:213.066px; height:146.672px"><p style="transform:rotate(-31.14deg)">← go back to bag</p></button>
+    <div id="left-page"></div>
+
+    <p id="planner-hint" class="rise">click to open</p>
+
+    <button id="back-planner" class="link back-to-bag rise">← go back to bag</button>
   </section>
 
-  <!-- ===== page 9 · pouch ===== -->
-  <section class="screen" id="page-pouch" aria-label="Wrong item: pouch">
-    <div class="rot" style="left:28.67px; top:60px; width:392.873px; height:162.886px">
-      <p class="title" style="transform:rotate(5deg)">journey to<br>jaclyn’s pen</p>
+  <!-- ========== POUCH PAGE ========== -->
+  <section id="page-pouch" class="screen">
+    <p class="title rise">find<br>jaclyn’s pen</p>
+    <div class="callout">
+      <p class="callout-big">!wrong item!</p>
+      <p class="small-text">item grabbed: pouch</p>
     </div>
-    <div class="rot callout" style="left:33.16px; top:834px; width:397.881px; height:125.106px">
-      <div style="transform:rotate(4deg)"><p class="big">!wrong item!</p><p class="mono">item grabbed: pouch</p></div>
-    </div>
-    <div class="abs box-white" style="left:420px; top:330px; width:150px; height:150px"></div>
-    <div class="abs box-white" style="left:620px; top:260px; width:150px; height:190px"></div>
-    <div class="abs box-white" style="left:600px; top:490px; width:150px; height:150px"></div>
-    <div class="abs box-white" style="left:400px; top:520px; width:150px; height:180px"></div>
-    <div class="abs box-white" style="left:800px; top:470px; width:150px; height:90px"></div>
-    <p class="abs mono tooltip" style="left:1010px; top:380px">hover an item to see<br>what it is</p>
-    <img class="abs pointer-arrow" src="assets/arrow.svg" width="60" height="70" alt="" style="left:955px; top:405px">
-    <button class="rot link back" data-go="bag-wallet" style="left:846px; top:580px; width:222.494px; height:123.692px"><p style="transform:rotate(-24.12deg)">← go back to bag</p></button>
+
+    <img id="pouch-clip" class="pouch-thing rise" src="assets/pouch-clip.png" alt="Hair clip">
+    <img id="pouch-cream" class="pouch-thing rise" src="assets/pouch-cream.png" alt="Hand cream">
+    <img id="pouch-mirror" class="pouch-thing rise" src="assets/pouch-mirror.png" alt="Pocket mirror">
+    <img id="pouch-balm" class="pouch-thing rise" src="assets/pouch-balm.png" alt="Lip balm">
+    <img id="pouch-tissues" class="pouch-thing rise" src="assets/pouch-tissues.png" alt="Tissues">
+    <p id="tooltip" class="small-text">hover an item to see<br>what it is</p>
+    <img id="tooltip-arrow" src="assets/arrow.svg" alt="">
+
+    <button id="back-pouch" class="link back-to-bag rise">← go back to bag</button>
   </section>
 
-  <!-- ===== page 11 · wallet ===== -->
-  <section class="screen" id="page-wallet" aria-label="Wrong item: wallet">
-    <div class="rot" style="left:28.67px; top:60px; width:392.873px; height:162.886px">
-      <p class="title" style="transform:rotate(5deg)">journey to<br>jaclyn’s pen</p>
+  <!-- ========== WALLET PAGE ========== -->
+  <section id="page-wallet" class="screen">
+    <p class="title rise">find<br>jaclyn’s pen</p>
+    <div class="callout">
+      <p class="callout-big">!wrong item!</p>
+      <p class="small-text">item grabbed: wallet</p>
     </div>
-    <div class="rot callout" style="left:33.16px; top:834px; width:397.881px; height:125.106px">
-      <div style="transform:rotate(4deg)"><p class="big">!wrong item!</p><p class="mono">item grabbed: wallet</p></div>
-    </div>
-    <div class="abs box-white" style="left:431px; top:260px; width:140px; height:430px"></div>
-    <div class="abs box-white" style="left:601px; top:260px; width:140px; height:430px"></div>
-    <div class="abs box-white" style="left:771px; top:260px; width:140px; height:430px"></div>
-    <div class="abs box-white" style="left:941px; top:260px; width:140px; height:430px"></div>
-    <button class="rot link back" data-go="bag-receipts" style="left:200px; top:550px; width:201.343px; height:166.189px"><p style="transform:rotate(37.71deg)">← go back to bag</p></button>
+
+    <img id="strip-1" class="strip rise" src="assets/strip-1.png" alt="Photobooth strip">
+    <img id="strip-2" class="strip rise" src="assets/strip-2.png" alt="Photobooth strip">
+    <img id="strip-3" class="strip rise" src="assets/strip-3.png" alt="Photobooth strip">
+    <img id="strip-4" class="strip rise" src="assets/strip-4.png" alt="Photobooth strip">
+
+    <button id="back-wallet" class="link back-to-bag rise">← go back to bag</button>
   </section>
 
-  <!-- ===== page 13 · crumpled receipts ===== -->
-  <section class="screen" id="page-receipts" aria-label="Wrong item: crumpled receipts">
-    <div class="rot" style="left:28.67px; top:60px; width:392.873px; height:162.886px">
-      <p class="title" style="transform:rotate(5deg)">journey to<br>jaclyn’s pen</p>
+  <!-- ========== RECEIPTS PAGE ========== -->
+  <section id="page-receipts" class="screen">
+    <p class="title rise">find<br>jaclyn’s pen</p>
+    <div class="callout">
+      <p class="callout-big">!wrong item!</p>
+      <p class="small-text">item grabbed: crumpled receipts</p>
     </div>
-    <div class="rot callout" style="left:33.16px; top:834px; width:449.755px; height:128.733px">
-      <div style="transform:rotate(4deg)"><p class="big">!wrong item!</p><p class="mono">item grabbed: crumpled receipts</p></div>
+
+    <div id="receipt-1" class="receipt rise">
+      <p class="store">cafe</p>
+      <p class="date">10/14/26 8:42</p>
+      <p class="row"><span>iced latte</span><span>5.75</span></p>
+      <p class="row"><span>oat milk</span><span>0.80</span></p>
+      <p class="row"><span>croissant</span><span>4.25</span></p>
+      <p class="row total"><span>total</span><span>10.80</span></p>
+      <p class="thanks">thank you!</p>
+      <p class="barcode">|| ||| | ||</p>
     </div>
-    <div class="rot" style="left:431px; top:252.67px; width:162.313px; height:436.738px"><div class="receipt" style="width:140px; height:430px; transform:rotate(-3deg)"></div></div>
-    <div class="rot" style="left:585.99px; top:260px; width:154.922px; height:434.624px"><div class="receipt" style="width:140px; height:430px; transform:rotate(2deg)"></div></div>
-    <div class="rot" style="left:771px; top:250.23px; width:169.654px; height:438.718px"><div class="receipt" style="width:140px; height:430px; transform:rotate(-4deg)"></div></div>
-    <div class="rot" style="left:918.5px; top:260px; width:162.313px; height:436.738px"><div class="receipt" style="width:140px; height:430px; transform:rotate(3deg)"></div></div>
-    <button class="rot link back" data-go="bag-pen" style="left:1136px; top:412px; width:206.395px; height:158.573px"><p style="transform:rotate(-35.07deg)">← go back to bag</p></button>
+    <div id="receipt-2" class="receipt rise">
+      <p class="store">boba shop</p>
+      <p class="date">10/19/26 16:05</p>
+      <p class="row"><span>milk tea</span><span>6.50</span></p>
+      <p class="row"><span>extra boba</span><span>0.75</span></p>
+      <p class="row total"><span>total</span><span>7.25</span></p>
+      <p class="thanks">thank you!</p>
+      <p class="barcode">|| ||| | ||</p>
+    </div>
+    <div id="receipt-3" class="receipt rise">
+      <p class="store">pharmacy</p>
+      <p class="date">10/22/26 19:31</p>
+      <p class="row"><span>lip balm</span><span>3.49</span></p>
+      <p class="row"><span>hair clips</span><span>7.99</span></p>
+      <p class="row"><span>gum</span><span>1.79</span></p>
+      <p class="row"><span>hand cream</span><span>8.49</span></p>
+      <p class="row total"><span>total</span><span>21.76</span></p>
+      <p class="thanks">thank you!</p>
+      <p class="barcode">|| ||| | ||</p>
+    </div>
+    <div id="receipt-4" class="receipt rise">
+      <p class="store">art store</p>
+      <p class="date">10/27/26 12:10</p>
+      <p class="row"><span>sketchbook</span><span>14.00</span></p>
+      <p class="row"><span>pen</span><span>1.20</span></p>
+      <p class="row"><span>tape</span><span>3.50</span></p>
+      <p class="row total"><span>total</span><span>18.70</span></p>
+      <p class="thanks">thank you!</p>
+      <p class="barcode">|| ||| | ||</p>
+    </div>
+
+    <button id="back-receipts" class="link back-to-bag rise">← go back to bag</button>
   </section>
 
-  <!-- ===== page 15 · found it ===== -->
-  <section class="screen" id="page-found" aria-label="You found the pen">
-    <div class="rot" style="left:28.67px; top:60px; width:392.873px; height:162.886px">
-      <p class="title" style="transform:rotate(5deg)">journey to<br>jaclyn’s pen</p>
+  <!-- ========== FOUND THE PEN ========== -->
+  <section id="page-pen" class="screen">
+    <p class="title rise">find<br>jaclyn’s pen</p>
+    <div class="callout">
+      <p class="callout-big">!found it!</p>
+      <p class="small-text">item grabbed: pen</p>
     </div>
-    <div class="rot callout" style="left:33.16px; top:834px; width:279.171px; height:116.805px">
-      <div style="transform:rotate(4deg)"><p class="big">!found it!</p><p class="mono">item grabbed: pen</p></div>
-    </div>
-    <div class="rot found-head" style="left:198px; top:339px; width:1116.122px; height:248.899px">
-      <p class="hero-title" style="font-size:170px; line-height:.9; letter-spacing:-10.2px; transform:rotate(5deg)">you've found it!</p>
-    </div>
-    <div class="rot multiply" style="left:360px; top:388px; width:792.744px; height:473.391px">
-      <div class="found-pen" style="width:311.6px; height:741px; filter:drop-shadow(7.6px 7.6px 3.8px rgba(0,0,0,.25)); transform:rotate(103.27deg)">
-        <img class="fill" src="assets/pen.png" alt="Jaclyn’s pen" style="opacity:.91">
-      </div>
-    </div>
-    <button class="abs link" data-go="hero" style="left:1257px; top:889px">explore again →</button>
+
+    <p id="found-headline">you've found it!</p>
+    <div id="found-pen"><img src="assets/pen.png" alt="Jaclyn’s pen"></div>
+
+    <button id="explore-again" class="link rise">explore again →</button>
   </section>
+
+  <!-- ========== PROGRESS BAR (one span for each item) ========== -->
+  <div id="progress-bar" class="hidden">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 
 </div>
-<div id="progress" role="progressbar" aria-label="Items pulled from the bag" aria-valuemin="0"></div>
+
 <script src="script.js"></script>
 </body>
 </html>
