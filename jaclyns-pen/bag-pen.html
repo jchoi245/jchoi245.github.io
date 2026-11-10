@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find Jaclyn’s Pen — inside the bag</title>
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Archivo:wght@100;300&family=Covered+By+Your+Grace&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="stage">
+
+  <!-- ========== INSIDE THE BAG (looking for the pen) ========== -->
+  <section id="bag" class="screen">
+    <p class="title rise">find<br>jaclyn’s<br>pen</p>
+    <img id="open-bag" src="assets/open-bag.png" alt="">
+    <div id="rummage-area"></div>
+
+    <div id="receipts-item" class="item less-faded"><img src="assets/receipts.png" alt="Crumpled receipts"></div>
+    <a id="pen-item" class="item target" href="pen.html" aria-label="Pen"><img src="assets/pen.png" alt=""></a>
+    <div id="planner-item" class="item"><img src="assets/planner.png" alt="Planner"></div>
+    <div id="airpods-item" class="item"><img src="assets/airpods.png" alt="Airpods"></div>
+    <div id="wallet-item" class="item"><img src="assets/wallet.png" alt="Wallet"></div>
+    <div id="pouch-item" class="item"><img src="assets/pouch.png" alt="Pouch"></div>
+  </section>
+
+  <!-- PROGRESS BAR: one link for each item. Filled in = found. -->
+  <div id="progress-bar">
+    <a class="segment done" href="airpods.html"><span class="segment-name">airpods</span></a>
+    <a class="segment done" href="planner.html"><span class="segment-name">planner</span></a>
+    <a class="segment done" href="pouch.html"><span class="segment-name">pouch</span></a>
+    <a class="segment done" href="wallet.html"><span class="segment-name">wallet</span></a>
+    <a class="segment done" href="receipts.html"><span class="segment-name">receipts</span></a>
+    <a class="segment" href="pen.html"><span class="segment-name">pen</span></a>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

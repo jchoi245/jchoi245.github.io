@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find Jaclyn’s Pen — airpods</title>
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Archivo:wght@100;300&family=Covered+By+Your+Grace&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="stage">
+
+  <!-- ========== AIRPODS PAGE ========== -->
+  <section id="page-airpods" class="screen">
+    <p class="title rise">find<br>jaclyn’s<br>pen</p>
+    <div class="callout">
+      <p class="callout-big">!wrong item!</p>
+      <p class="small-text">item grabbed: airpods</p>
+    </div>
+
+    <button id="cover-dean" class="cover" aria-label="Play Instagram by DEAN"><img src="assets/cover-dean.png" alt=""></button>
+    <button id="play-dean" class="play rise" aria-label="Play Instagram by DEAN"><img src="assets/play.svg" alt=""><div class="pause"></div></button>
+    <p id="name-dean" class="song-name small-text rise">DEAN — Instagram</p>
+
+    <button id="cover-billie" class="cover" aria-label="Play L’Amour de ma vie by Billie Eilish"><img src="assets/cover-billie.png" alt=""></button>
+    <button id="play-billie" class="play rise" aria-label="Play L’Amour de ma vie by Billie Eilish"><img src="assets/play.svg" alt=""><div class="pause"></div></button>
+    <p id="name-billie" class="song-name small-text rise">Billie Eilish — L’Amour de ma vie</p>
+
+    <button id="cover-sza" class="cover" aria-label="Play Awkward by SZA"><img src="assets/cover-sza.png" alt=""></button>
+    <button id="play-sza" class="play rise" aria-label="Play Awkward by SZA"><img src="assets/play.svg" alt=""><div class="pause"></div></button>
+    <p id="name-sza" class="song-name small-text rise">SZA — Awkward</p>
+
+    <a id="back-airpods" class="link back-to-bag rise" href="bag-planner.html">← go back to bag</a>
+  </section>
+
+  <!-- PROGRESS BAR: one link for each item. Filled in = found. -->
+  <div id="progress-bar">
+    <a class="segment done" href="airpods.html"><span class="segment-name">airpods</span></a>
+    <a class="segment" href="planner.html"><span class="segment-name">planner</span></a>
+    <a class="segment" href="pouch.html"><span class="segment-name">pouch</span></a>
+    <a class="segment" href="wallet.html"><span class="segment-name">wallet</span></a>
+    <a class="segment" href="receipts.html"><span class="segment-name">receipts</span></a>
+    <a class="segment" href="pen.html"><span class="segment-name">pen</span></a>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+<script src="airpods.js"></script>
+</body>
+</html>

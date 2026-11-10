@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find Jaclyn’s Pen — pouch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Archivo:wght@100;300&family=Covered+By+Your+Grace&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="stage">
+
+  <!-- ========== POUCH PAGE ========== -->
+  <section id="page-pouch" class="screen">
+    <p class="title rise">find<br>jaclyn’s<br>pen</p>
+    <div class="callout">
+      <p class="callout-big">!wrong item!</p>
+      <p class="small-text">item grabbed: pouch</p>
+    </div>
+
+    <img id="pouch-clip" class="pouch-thing rise" src="assets/pouch-clip.png" alt="Hair clip">
+    <img id="pouch-cream" class="pouch-thing rise" src="assets/pouch-cream.png" alt="Hand cream">
+    <img id="pouch-mirror" class="pouch-thing rise" src="assets/pouch-mirror.png" alt="Pocket mirror">
+    <img id="pouch-balm" class="pouch-thing rise" src="assets/pouch-balm.png" alt="Lip balm">
+    <img id="pouch-tissues" class="pouch-thing rise" src="assets/pouch-tissues.png" alt="Tissues">
+    <p id="tooltip" class="small-text">hover an item to see<br>what it is</p>
+    <img id="tooltip-arrow" src="assets/arrow.svg" alt="">
+
+    <a id="back-pouch" class="link back-to-bag rise" href="bag-wallet.html">← go back to bag</a>
+  </section>
+
+  <!-- PROGRESS BAR: one link for each item. Filled in = found. -->
+  <div id="progress-bar">
+    <a class="segment done" href="airpods.html"><span class="segment-name">airpods</span></a>
+    <a class="segment done" href="planner.html"><span class="segment-name">planner</span></a>
+    <a class="segment done" href="pouch.html"><span class="segment-name">pouch</span></a>
+    <a class="segment" href="wallet.html"><span class="segment-name">wallet</span></a>
+    <a class="segment" href="receipts.html"><span class="segment-name">receipts</span></a>
+    <a class="segment" href="pen.html"><span class="segment-name">pen</span></a>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+<script src="pouch.js"></script>
+</body>
+</html>

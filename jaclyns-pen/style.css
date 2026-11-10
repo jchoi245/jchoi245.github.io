@@ -1,3 +1,8 @@
+/* Fade softly from one page to the next (in browsers that support it) */
+@view-transition {
+  navigation: auto;
+}
+
 /* ==========================================================
    BASICS
    ========================================================== */
@@ -54,7 +59,7 @@ img {
   transform-origin: 0 0;
 }
 
-/* Only the screen with the class "active" can be seen. */
+/* Each page has one screen that fills the stage */
 .screen {
   position: absolute;
   top: 0;
@@ -63,14 +68,6 @@ img {
   height: 100%;
   overflow: hidden;
   background: #f268a0;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease-out, visibility 0.3s;
-}
-
-.screen.active {
-  opacity: 1;
-  visibility: visible;
 }
 
 
@@ -107,6 +104,12 @@ img {
   color: white;
   margin-bottom: 6px;
   white-space: nowrap;
+}
+
+/* Links have no underline or blue color unless we add them */
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 /* Underlined links like "go back to bag" */
@@ -154,11 +157,13 @@ img {
   height: 1043.9px;
   max-width: none;
   mix-blend-mode: multiply;
+  pointer-events: none;
 }
 
-/* An invisible button sitting on top of the bag picture */
+/* An invisible link sitting on top of the bag picture */
 #hero-bag-button {
   position: absolute;
+  z-index: 1;
   left: 487px;
   top: 160px;
   width: 546px;
@@ -221,10 +226,6 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.item:disabled {
-  pointer-events: none;
 }
 
 .less-faded {
@@ -570,6 +571,30 @@ img {
 #strip-3 { left: 771px; top: 260px; width: 140px; height: 430px; }
 #strip-4 { left: 941px; top: 260px; width: 140px; height: 430px; }
 
+/* Each strip is white paper with the photos on top and a caption underneath */
+.strip {
+  background: white;
+}
+
+.strip img {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  width: 124px;
+  height: 388px;
+}
+
+.strip p {
+  position: absolute;
+  left: 0;
+  bottom: 7px;
+  width: 100%;
+  font: 400 15px/1 'VT323', monospace;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+}
+
 #back-wallet {
   left: 197px;
   top: 616px;
@@ -688,27 +713,48 @@ img {
 #progress-bar {
   position: absolute;
   left: 576px;
-  top: 954px;
+  top: 942px;
   width: 360px;
-  height: 8px;
+  height: 20px;
   display: flex;
   gap: 6px;
   z-index: 3;
   transition: opacity 0.3s;
 }
 
-#progress-bar.hidden {
-  opacity: 0;
-}
-
-#progress-bar span {
+/* Each segment is a link. The bar you see is its thick bottom border;
+   the space above it makes it easier to hover. */
+.segment {
+  display: block;
+  position: relative;
   flex: 1;
-  background: rgba(10, 10, 10, 0.18);
-  transition: background-color 0.3s;
+  height: 20px;
+  border-bottom: 8px solid rgba(10, 10, 10, 0.18);
+  transition: border-color 0.3s;
 }
 
-#progress-bar span.done {
-  background: #0a0a0a;
+.segment.done {
+  border-bottom-color: #0a0a0a;
+}
+
+.segment:hover {
+  border-bottom-color: white;
+}
+
+/* The name that shows above a segment when you hover it */
+.segment-name {
+  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+  font: 400 22px/1 'VT323', monospace;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.segment:hover .segment-name {
+  display: block;
 }
 
 
@@ -723,16 +769,16 @@ img {
   from { opacity: 0; translate: 0 28px; }
 }
 
-.screen.active .rise {
+.rise {
   animation: rise 0.6s ease-out backwards;
 }
 
-.screen.active .rise:nth-child(2) { animation-delay: 0.07s; }
-.screen.active .rise:nth-child(3) { animation-delay: 0.14s; }
-.screen.active .rise:nth-child(4) { animation-delay: 0.21s; }
-.screen.active .rise:nth-child(5) { animation-delay: 0.28s; }
-.screen.active .rise:nth-child(6) { animation-delay: 0.35s; }
-.screen.active .rise:nth-child(7) { animation-delay: 0.42s; }
+.rise:nth-child(2) { animation-delay: 0.07s; }
+.rise:nth-child(3) { animation-delay: 0.14s; }
+.rise:nth-child(4) { animation-delay: 0.21s; }
+.rise:nth-child(5) { animation-delay: 0.28s; }
+.rise:nth-child(6) { animation-delay: 0.35s; }
+.rise:nth-child(7) { animation-delay: 0.42s; }
 
 /* "!wrong item!" shakes side to side once */
 @keyframes buzz {
@@ -742,7 +788,7 @@ img {
   80% { translate: 2px 0; }
 }
 
-.screen.active .callout {
+.callout {
   animation: buzz 0.45s ease-in-out 0.55s;
 }
 
@@ -795,7 +841,7 @@ img {
   75% { translate: 4px -1px; rotate: 0.5deg; }
 }
 
-#hero #hero-bag.big-shake {
+#hero-bag-button.clicked ~ #hero-bag {
   animation: big-shake 0.38s ease-in-out;
 }
 
@@ -824,7 +870,7 @@ img {
 }
 
 /* It jumps up when you pick it */
-#bag .item.target.picked {
+#bag .item.target.clicked {
   animation: none;
   scale: 1.3;
   translate: 0 -40px;
@@ -845,7 +891,7 @@ img {
   from { scale: 0.4; opacity: 0; }
 }
 
-.screen.active #found-headline {
+#found-headline {
   animation: pop 0.8s ease-out 0.25s backwards;
 }
 
@@ -853,7 +899,7 @@ img {
   50% { translate: 0 -12px; rotate: 1.5deg; }
 }
 
-.screen.active #found-pen {
+#found-pen {
   animation: float 3s ease-in-out 1s infinite;
 }
 
